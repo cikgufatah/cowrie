@@ -14,13 +14,13 @@
 # server as the sensor name.
 #
 # (default: not specified)
-#sensor_name=myhostname
+sensor_name = APIKEY
 
 # Hostname for the honeypot. Displayed by the shell prompt of the virtual
 # environment
 #
 # (default: svr04)
-hostname = svr04
+hostname = intra
 
 
 # Directory where to save log files in.
@@ -177,7 +177,7 @@ auth_class = UserDB
 # ============================================================================
 
 # Source Port to report in logs (useful if you use iptables to forward ports to Cowrie)
-#reported_ssh_port = 22
+reported_ssh_port = 22
 
 
 
@@ -224,7 +224,7 @@ dsa_private_key = etc/ssh_host_dsa_key
 # SSH-2.0-OpenSSH_5.9
 #
 # (default: "SSH-2.0-SSH-2.0-OpenSSH_6.0p1 Debian-4+deb7u2")
-version = SSH-2.0-OpenSSH_6.0p1 Debian-4+deb7u2
+version = SSH-2.0-OpenSSH_5.1p1 Debian-5
 
 
 # IP addresses to listen for incoming SSH connections.
@@ -249,7 +249,7 @@ version = SSH-2.0-OpenSSH_6.0p1 Debian-4+deb7u2
 # (use systemd: endpoint for systemd activation)
 # listen_endpoints = systemd:domain=INET:index=0
 # For both IPv4 and IPv6: listen_endpoints = tcp6:2222:interface=\:\:
-listen_endpoints = tcp:2222:interface=0.0.0.0
+listen_endpoints = tcp:22:interface=0.0.0.0
 
 
 # Enable the SFTP subsystem
@@ -289,7 +289,7 @@ forward_redirect = false
 [telnet]
 
 # Enable Telnet support, disabled by default
-enabled = false
+enabled = true
 
 # IP addresses to listen for incoming Telnet connections.
 # (DEPRECATED: use listen_endpoints instead)
@@ -313,11 +313,11 @@ enabled = false
 # (use systemd: endpoint for systemd activation)
 # listen_endpoints = systemd:domain=INET:index=0
 # For IPv4 and IPv6: listen_endpoints = tcp6:2223:interface=\:\: tcp:2223:interface=0.0.0.0
-listen_endpoints = tcp:2223:interface=0.0.0.0
+listen_endpoints = tcp:23:interface=0.0.0.0
 
 
 # Source Port to report in logs (useful if you use iptables to forward ports to Cowrie)
-#reported_port = 23
+reported_port = 23
 
 
 
@@ -515,3 +515,7 @@ logfile = log/cowrie.json
 #[output_socketlog]
 #address = 127.0.0.1:9000
 #timeout = 5
+
+[output_lebahnet]
+connection_url = https://api.honeynet.org.my/1.0/sensor/{id}/connection
+artifact_url = https://api.honeynet.org.my/1.0/sensor/{id}/connection/{connection_id}/artifact
