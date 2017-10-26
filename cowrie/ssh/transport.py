@@ -29,7 +29,7 @@ class HoneyPotSSHTransport(transport.SSHServerTransport, TimeoutMixin):
         Called when the connection is made from the other side.
         We send our version, but wait with sending KEXINIT
         """
-        self.transportId = uuid.uuid4().hex[:12]
+        self.transportId = str(uuid.uuid4())
 
         src_ip = self.transport.getPeer().host
         ipv4rex = re.compile(r'^::ffff:(\d+\.\d+\.\d+\.\d+)$')
